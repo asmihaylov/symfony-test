@@ -1,1 +1,30 @@
-my list index
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h2 class="page-header">Latest lists</h2>
+	<table class="table table-striped"> 
+		<thead> 
+			<tr> 
+				<th>#</th> 
+				<th>List name</th> 
+				<th>Date</th> 
+				<th></th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+		{% for list in lists %}
+			<tr> 
+				<th scope="row">{{list.id}}</th>
+				 <td>{{list.name}}</td> 
+				 <td>{{list.date|date('F j, Y, g:i a')}}</td> 
+				 <td>
+				 	<a href="/list/details/{{list.id}}" class="btn btn-success">view</a>
+				 	<a href="/list/edit/{{list.id}}" class="btn btn-default">edit</a>
+				 	<a href="/list/delete/{{list.id}}" class="btn btn-danger">delete</a>
+				 </td> 
+			</tr> 
+			
+		 	{% endfor %}
+		 </tbody>
+	</table>
+{% endblock %}

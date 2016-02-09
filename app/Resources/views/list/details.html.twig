@@ -1,1 +1,12 @@
-DETAILS 
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<a class="btn btn-default" href="/">back to lists</a>
+	<hr>
+	<h2 class="page-header">{{list.name}}</h2>
+	<ul class="list-group">
+		<li class="list-group-item">Category: {{list.category}}</li>
+		<li class="list-group-item">Priority: {{list.priority}}</li>
+		<li class="list-group-item">Date: {{list.date|date('F j, Y, g:i a')}}</li>
+	</ul>
+{% endblock %}
