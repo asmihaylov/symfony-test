@@ -22,7 +22,6 @@ class ListController extends Controller
         $list = $this->getDoctrine()
         ->getRepository('AppBundle:Lists')
         ->findAll();
-        // replace this example code with whatever you need
         return $this->render('list/index.html.twig', array('lists' => $list));
     }
     /**
@@ -64,7 +63,7 @@ class ListController extends Controller
                 );
             return $this->redirectToRoute('list');
         }
-        // replace this example code with whatever you need
+
         return $this->render('list/create.html.twig', array('form' => $form->createView()));
     }
     /**
@@ -116,7 +115,7 @@ class ListController extends Controller
                 );
             return $this->redirectToRoute('list');
         }
-        // replace this example code with whatever you need
+
         return $this->render('list/edit.html.twig', array('list' => $list, 'form'=>$form->createView()));
     }
     /**
