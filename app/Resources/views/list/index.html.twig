@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% if user %}
+	Hello, {{ user }}! <a href="/logout">Logout</a>
+    {% endif %}
 	<h2 class="page-header">Latest lists</h2>
 	<table class="table table-striped"> 
 		<thead> 

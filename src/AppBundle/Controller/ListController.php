@@ -19,10 +19,18 @@ class ListController extends Controller
      */
     public function listsAction()
     {
+        $user = 'anonymous';
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if ($currentUser)
+        {
+            $user = $currentUser->getUserName();
+        }
         $list = $this->getDoctrine()
         ->getRepository('AppBundle:Lists')
         ->findAll();
-        return $this->render('list/index.html.twig', array('lists' => $list));
+
+        return $this->render('list/index.html.twig', array('lists' => $list, 'user' =>$user));
     }
     /**
      * @Route("/list/create", name="list_create")
@@ -143,5 +151,15 @@ class ListController extends Controller
                 'notice', 'List removed'
                 );
             return $this->redirectToRoute('list');
+    }
+    /**
+     * @Route("/logout", name="user_logout")
+     */
+    public function logoutAction()
+    {
+        $this->addFlash(
+            'notice', 'You have successfully logged out'
+        );
+        return $this->redirectToRoute('/');
     }
 }
